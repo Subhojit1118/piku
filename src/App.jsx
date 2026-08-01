@@ -33,7 +33,23 @@ function App() {
     const timer = setTimeout(() => {
       triggerConfettiBurst(80);
     }, 600);
-    return () => clearTimeout(timer);
+
+    // Prevent image context menu (right-click download) and dragging globally
+    const preventImageDownloadAndDrag = (e) => {
+      if (e.target && e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    document.addEventListener('contextmenu', preventImageDownloadAndDrag);
+    document.addEventListener('dragstart', preventImageDownloadAndDrag);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('contextmenu', preventImageDownloadAndDrag);
+      document.removeEventListener('dragstart', preventImageDownloadAndDrag);
+    };
   }, []);
 
   return (

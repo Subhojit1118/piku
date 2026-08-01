@@ -51,7 +51,9 @@ export function HeroSection({ heroImage }) {
             <img
               src={heroImage}
               alt="Piku Birthday Queen"
-              className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105 shadow-md"
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+              className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105 shadow-md select-none"
             />
             {/* Sparkle Tag */}
             <div className="absolute bottom-4 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-slate-950/85 border border-pink-400/60 text-pink-300 text-[11px] sm:text-xs font-semibold backdrop-blur-md shadow-lg flex items-center gap-1.5">

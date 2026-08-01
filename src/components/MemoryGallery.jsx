@@ -77,7 +77,9 @@ export function MemoryGallery({ imagesMap }) {
                   <img
                     src={imgSrc}
                     alt={mem.title}
-                    className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105 shadow-md"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105 shadow-md select-none"
                   />
 
                   {/* Hover Overlay */}
@@ -138,7 +140,9 @@ export function MemoryGallery({ imagesMap }) {
               <img
                 src={selectedImage.src || activeImagesMap[selectedImage.key] || defaultImagesMap[selectedImage.key]}
                 alt={selectedImage.title}
-                className="max-h-[52vh] w-auto object-contain rounded-xl shadow-2xl"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                className="max-h-[52vh] w-auto object-contain rounded-xl shadow-2xl select-none"
               />
             </div>
 

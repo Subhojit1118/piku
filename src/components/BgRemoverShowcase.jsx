@@ -45,7 +45,7 @@ export function PhotoShowcase({ imagesMap }) {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-400/30 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <span>📸 Special Gallery</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-bold font-cursive shimmer-text px-2">
+          <h2 className="text-4xl py-2 sm:text-6xl font-bold font-cursive shimmer-text px-2">
             Piku's Original Photo Gallery
           </h2>
           <p className="text-slate-300 max-w-xl mx-auto mt-2 text-xs sm:text-sm px-4">
@@ -79,7 +79,9 @@ export function PhotoShowcase({ imagesMap }) {
                   <img
                     src={imgSrc}
                     alt={item.name}
-                    className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105 shadow-md"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-105 shadow-md select-none"
                   />
 
                   {/* Hover Overlay */}
@@ -133,7 +135,9 @@ export function PhotoShowcase({ imagesMap }) {
               <img
                 src={selectedPhoto.src || activeImagesMap[selectedPhoto.key] || defaultImagesMap[selectedPhoto.key]}
                 alt={selectedPhoto.name}
-                className="max-h-[55vh] w-auto object-contain rounded-xl shadow-2xl"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                className="max-h-[55vh] w-auto object-contain rounded-xl shadow-2xl select-none"
               />
             </div>
 
