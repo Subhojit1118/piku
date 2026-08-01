@@ -17,9 +17,24 @@ export function AudioProvider({ children }) {
     audio.volume = volume;
     audio.loop = true; // Ensure endless looping back-to-back
 
-    const validGestureEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'keydown'];
+    const zeroClickEvents = [
+      'mousemove',
+      'pointermove',
+      'mouseover',
+      'mouseenter',
+      'scroll',
+      'wheel',
+      'focus',
+      'visibilitychange',
+      'click',
+      'touchstart',
+      'touchend',
+      'pointerdown',
+      'mousedown',
+      'keydown'
+    ];
 
-    const unlockAndPlay = () => {
+    const tryPlayUnmuted = () => {
       if (!audioRef.current) return;
       audioRef.current.muted = false;
       audioRef.current.play().then(() => {
@@ -28,38 +43,33 @@ export function AudioProvider({ children }) {
         setAutoplayBlocked(false);
         removeListeners();
       }).catch((err) => {
-        console.log('Playback start pending valid gesture:', err);
+        // If unmuted sound is restricted by browser policy, keep track playing muted in background
+        if (audioRef.current && audioRef.current.paused) {
+          audioRef.current.muted = true;
+          audioRef.current.play().then(() => {
+            setIsPlaying(true);
+          }).catch(() => {});
+        }
       });
     };
 
     const removeListeners = () => {
-      validGestureEvents.forEach((evt) => {
-        window.removeEventListener(evt, unlockAndPlay);
+      zeroClickEvents.forEach((evt) => {
+        window.removeEventListener(evt, tryPlayUnmuted);
       });
     };
 
     const addListeners = () => {
-      validGestureEvents.forEach((evt) => {
-        window.addEventListener(evt, unlockAndPlay, { passive: true });
+      zeroClickEvents.forEach((evt) => {
+        window.addEventListener(evt, tryPlayUnmuted, { passive: true });
       });
     };
 
-    // First attempt to play unmuted directly
-    audio.play().then(() => {
-      setIsPlaying(true);
-      setAutoplayBlocked(false);
-    }).catch((err) => {
-      console.log('Unmuted autoplay blocked by browser policy. Playing muted fallback to start audio track immediately.', err);
-      setAutoplayBlocked(true);
-      // Fall back to playing muted - browsers NEVER block muted audio autoplay
-      audio.muted = true;
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch((e) => console.log('Muted autoplay failed:', e));
+    // Immediate zero-delay play attempt on load
+    tryPlayUnmuted();
 
-      // Register gesture listeners to unmute sound on first user gesture
-      addListeners();
-    });
+    // Listen for any mouse movement, hover, scroll, focus, or gesture
+    addListeners();
 
     return () => {
       removeListeners();

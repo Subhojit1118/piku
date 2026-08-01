@@ -6,17 +6,29 @@ export function BackgroundMusicPlayer() {
   const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
   return (
-    <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 z-50 flex flex-col items-end gap-2 max-w-[calc(100vw-24px)]">
-      {/* Autoplay prompt toast if browser blocked unmuted autoplay */}
+    <>
+      {/* Top Welcome Entry Banner if unmuted autoplay is waiting for gesture */}
       {autoplayBlocked && (
         <div 
           onClick={togglePlay}
-          className="animate-bounce bg-gradient-to-r from-pink-600 to-purple-600 text-white text-[11px] sm:text-xs font-semibold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full shadow-lg border border-pink-300/40 flex items-center gap-1.5 sm:gap-2 cursor-pointer hover:scale-105 transition-transform max-w-full truncate"
+          className="fixed top-16 sm:top-20 left-1/2 -translate-x-1/2 z-[60] animate-bounce bg-gradient-to-r from-pink-600 via-purple-600 to-amber-500 text-white text-xs sm:text-sm font-bold px-4 py-2 sm:px-6 sm:py-2.5 rounded-full shadow-2xl border-2 border-pink-300/60 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform backdrop-blur-md max-w-[92vw] text-center"
         >
-          <span className="animate-ping shrink-0">🎵</span>
-          <span className="truncate">Tap anywhere to enable music!</span>
+          <span className="animate-ping text-base shrink-0">🎵</span>
+          <span className="truncate">Move cursor or tap anywhere to play "O Maahi" background song! 💖</span>
         </div>
       )}
+
+      <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 z-50 flex flex-col items-end gap-2 max-w-[calc(100vw-24px)]">
+        {/* Autoplay prompt toast if browser blocked unmuted autoplay */}
+        {autoplayBlocked && (
+          <div 
+            onClick={togglePlay}
+            className="animate-bounce bg-gradient-to-r from-pink-600 to-purple-600 text-white text-[11px] sm:text-xs font-semibold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full shadow-lg border border-pink-300/40 flex items-center gap-1.5 sm:gap-2 cursor-pointer hover:scale-105 transition-transform max-w-full truncate"
+          >
+            <span className="animate-ping shrink-0">🎵</span>
+            <span className="truncate">Tap anywhere to enable music!</span>
+          </div>
+        )}
 
       {/* Floating Audio Player Card */}
       <div className="glass-card rounded-2xl p-2 sm:px-4 sm:py-3 border border-pink-500/30 shadow-2xl backdrop-blur-xl flex items-center gap-2 sm:gap-3 bg-slate-950/85 hover:border-pink-500/50 transition-all duration-300 group max-w-full">
@@ -106,6 +118,7 @@ export function BackgroundMusicPlayer() {
         </div>
 
       </div>
-    </div>
+      </div>
+    </>
   );
 }
