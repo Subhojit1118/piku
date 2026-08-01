@@ -28,13 +28,13 @@ export function HeroSection({ heroImage }) {
         {/* Crown Badge */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-500/40 text-pink-300 text-xs sm:text-sm font-semibold tracking-wide mb-4 sm:mb-6 shadow-inner">
           <span className="animate-bounce">👑</span>
-          <span>SPECIAL BIRTHDAY CELEBRATION</span>
+          <span>SPECIAL CELEBRATION • 03.08.2010</span>
           <span className="animate-pulse">✨</span>
         </div>
 
         {/* Main Cursive Title */}
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-cursive leading-tight mb-2 shimmer-text drop-shadow-lg px-2">
-          Happy Birthday Piku!
+        <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-bold font-cursive leading-tight mb-2 shimmer-text drop-shadow-lg px-2">
+          Happy Birthday Ritika(Piku)!
         </h1>
 
         <p className="text-base sm:text-xl md:text-2xl text-slate-300 max-w-2xl font-light font-handwriting mb-6 sm:mb-8 tracking-wider px-4">
@@ -57,7 +57,7 @@ export function HeroSection({ heroImage }) {
             />
             {/* Sparkle Tag */}
             <div className="absolute bottom-4 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-slate-950/85 border border-pink-400/60 text-pink-300 text-[11px] sm:text-xs font-semibold backdrop-blur-md shadow-lg flex items-center gap-1.5">
-              <span>💖 Birthday Queen Piku</span>
+              <span>💖 Ritika (Piku) • 03.08.2010</span>
             </div>
           </div>
         </div>

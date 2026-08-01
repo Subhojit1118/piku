@@ -4,7 +4,7 @@ import { triggerConfettiBurst } from '../utils/confetti';
 
 export function GreetingCardGenerator() {
   const [theme, setTheme] = useState('rose');
-  const [name, setName] = useState('Piku');
+  const [name, setName] = useState('Ritika');
   const [customWish, setCustomWish] = useState(
     'Wishing you a day filled with laughter, love, and sweet surprises! May all your dreams come true this year!'
   );

@@ -61,6 +61,11 @@ export function InteractiveCake() {
             </div>
           )}
 
+          {/* 16th Birthday Topper Tag */}
+          <div className="mb-3 px-4 py-1 sm:px-5 sm:py-1.5 rounded-full bg-gradient-to-r from-amber-400 via-pink-500 to-purple-500 text-slate-950 font-extrabold text-xs sm:text-sm shadow-xl animate-pulse flex items-center gap-1.5 border border-amber-300">
+            <span>🎉 Sweet 16th Birthday! 👑</span>
+          </div>
+
           {/* Candle Stand */}
           <div className="flex items-end justify-center gap-2 xs:gap-4 sm:gap-6 mb-2 relative z-20">
             {candles.map((isLit, idx) => (
@@ -98,7 +103,7 @@ export function InteractiveCake() {
           {/* Cake Tier 1 (Top) */}
           <div className="w-[60vw] max-w-[16rem] sm:w-64 h-12 sm:h-14 rounded-t-3xl bg-gradient-to-r from-pink-500 via-pink-400 to-rose-400 border-t-4 border-white/40 shadow-inner flex items-center justify-center relative z-10">
             <span className="text-white text-[11px] sm:text-xs font-bold tracking-widest uppercase opacity-95">
-              💖 Piku 💖
+              💖 Sweet 16 • Ritika 💖
             </span>
           </div>
 
@@ -113,7 +118,7 @@ export function InteractiveCake() {
           {/* Cake Tier 3 (Bottom Base) */}
           <div className="w-[88vw] max-w-[24rem] sm:w-96 h-16 sm:h-20 rounded-b-3xl bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 border-t-4 border-purple-400/40 shadow-2xl flex items-center justify-center">
             <div className="px-4 py-1 sm:px-6 sm:py-1.5 rounded-full bg-slate-950/80 border border-amber-400/50 text-amber-300 text-[10px] sm:text-xs font-bold">
-              👑 HAPPY BIRTHDAY QUEEN 👑
+              👑 RITIKA (PIKU) • 16TH BIRTHDAY • 03.08.2010 👑
             </div>
           </div>
 

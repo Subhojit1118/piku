@@ -14,8 +14,11 @@ export function Footer() {
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
         <div className="text-4xl animate-bounce">👑</div>
         <h3 className="text-3xl sm:text-4xl font-bold font-cursive shimmer-text px-2">
-          Happy Birthday Piku! 💖✨
+          Happy Birthday Ritika(Piku)! 💖✨
         </h3>
+        <p className="text-xs text-pink-300 font-mono font-semibold">
+          🎂 Special Day: 03.08.2010
+        </p>
         <p className="text-xs text-slate-400 max-w-sm">
           Wishing you endless happiness, smiles, and magical memories today and always!
         </p>

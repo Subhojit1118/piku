@@ -46,7 +46,7 @@ export function PhotoShowcase({ imagesMap }) {
             <span>📸 Special Gallery</span>
           </div>
           <h2 className="text-4xl py-2 sm:text-6xl font-bold font-cursive shimmer-text px-2">
-            Piku's Original Photo Gallery
+            Ritika's Original Photo Gallery
           </h2>
           <p className="text-slate-300 max-w-xl mx-auto mt-2 text-xs sm:text-sm px-4">
             High-resolution original photos capturing sweet smiles, romantic moments, and cherished birthday memories. Tap any photo to view in full resolution!
