@@ -19,15 +19,6 @@ export function PhotoShowcase({ imagesMap }) {
     setSelectedPhoto(item);
   };
 
-  const handleDownload = (src, filename) => {
-    playChimeSFX();
-    const a = document.createElement('a');
-    a.href = src;
-    a.download = filename;
-    a.click();
-    triggerConfettiBurst(30);
-  };
-
   return (
     <section id="bg-studio" className="py-20 px-4 relative z-10">
       <div className="max-w-6xl mx-auto">
@@ -87,14 +78,6 @@ export function PhotoShowcase({ imagesMap }) {
                     <h3 className="text-base font-bold text-pink-200">{item.name}</h3>
                     <p className="text-xs text-slate-400 font-light">{item.desc}</p>
                   </div>
-
-                  <button
-                    onClick={() => handleDownload(imgSrc, `${item.key}-original.jpeg`)}
-                    className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-pink-500/20 border border-pink-500/30 text-pink-300 text-xs font-medium transition-all flex items-center gap-1 cursor-pointer shrink-0 ml-2"
-                    title="Download Photo"
-                  >
-                    <span>⬇️ Save</span>
-                  </button>
                 </div>
               </div>
             );

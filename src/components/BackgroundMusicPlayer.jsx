@@ -7,11 +7,14 @@ export function BackgroundMusicPlayer() {
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
-      {/* Autoplay prompt toast if browser blocked autoplay */}
+      {/* Autoplay prompt toast if browser blocked unmuted autoplay */}
       {autoplayBlocked && (
-        <div className="animate-bounce bg-gradient-to-r from-pink-600 to-purple-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg border border-pink-300/40 flex items-center gap-1.5">
+        <div 
+          onClick={togglePlay}
+          className="animate-bounce bg-gradient-to-r from-pink-600 to-purple-600 text-white text-xs font-semibold px-3.5 py-2 rounded-full shadow-lg border border-pink-300/40 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform"
+        >
           <span className="animate-ping">🎵</span>
-          <span>Click anywhere to start background music!</span>
+          <span>Tap anywhere to enable music!</span>
         </div>
       )}
 

@@ -5,7 +5,7 @@ const AudioContext = createContext();
 
 export function AudioProvider({ children }) {
   const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolumeState] = useState(0.7);
   const [autoplayBlocked, setAutoplayBlocked] = useState(false);
@@ -17,41 +17,52 @@ export function AudioProvider({ children }) {
     audio.volume = volume;
     audio.loop = true; // Ensure endless looping back-to-back
 
-    const attemptPlay = async () => {
-      try {
-        await audio.play();
+    const validGestureEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'keydown'];
+
+    const unlockAndPlay = () => {
+      if (!audioRef.current) return;
+      audioRef.current.muted = false;
+      audioRef.current.play().then(() => {
         setIsPlaying(true);
+        setIsMuted(false);
         setAutoplayBlocked(false);
-      } catch (err) {
-        console.log('Autoplay blocked by browser. Awaiting user interaction.');
-        setIsPlaying(false);
-        setAutoplayBlocked(true);
-      }
+        removeListeners();
+      }).catch((err) => {
+        console.log('Playback start pending valid gesture:', err);
+      });
     };
 
-    attemptPlay();
-
-    // Auto-start playback on first user interaction if blocked by browser policy
-    const handleFirstInteraction = () => {
-      if (audio.paused) {
-        audio.play().then(() => {
-          setIsPlaying(true);
-          setAutoplayBlocked(false);
-        }).catch((e) => console.log('Playback start error on interaction:', e));
-      }
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('keydown', handleFirstInteraction);
+    const removeListeners = () => {
+      validGestureEvents.forEach((evt) => {
+        window.removeEventListener(evt, unlockAndPlay);
+      });
     };
 
-    window.addEventListener('click', handleFirstInteraction);
-    window.addEventListener('touchstart', handleFirstInteraction);
-    window.addEventListener('keydown', handleFirstInteraction);
+    const addListeners = () => {
+      validGestureEvents.forEach((evt) => {
+        window.addEventListener(evt, unlockAndPlay, { passive: true });
+      });
+    };
+
+    // First attempt to play unmuted directly
+    audio.play().then(() => {
+      setIsPlaying(true);
+      setAutoplayBlocked(false);
+    }).catch((err) => {
+      console.log('Unmuted autoplay blocked by browser policy. Playing muted fallback to start audio track immediately.', err);
+      setAutoplayBlocked(true);
+      // Fall back to playing muted - browsers NEVER block muted audio autoplay
+      audio.muted = true;
+      audio.play().then(() => {
+        setIsPlaying(true);
+      }).catch((e) => console.log('Muted autoplay failed:', e));
+
+      // Register gesture listeners to unmute sound on first user gesture
+      addListeners();
+    });
 
     return () => {
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('keydown', handleFirstInteraction);
+      removeListeners();
     };
   }, []);
 
@@ -59,10 +70,12 @@ export function AudioProvider({ children }) {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (isPlaying) {
+    if (isPlaying && !audio.muted) {
       audio.pause();
       setIsPlaying(false);
     } else {
+      audio.muted = false;
+      setIsMuted(false);
       audio.play().then(() => {
         setIsPlaying(true);
         setAutoplayBlocked(false);
@@ -112,6 +125,7 @@ export function AudioProvider({ children }) {
         ref={audioRef}
         src={dunkiSong}
         loop
+        autoPlay
         preload="auto"
       />
       {children}

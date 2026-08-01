@@ -32,7 +32,7 @@ export function Navbar({ activeSection, setActiveSection }) {
         >
           <span className="text-2xl animate-bounce">👑</span>
           <span className="font-cursive text-3xl font-bold bg-gradient-to-r from-pink-400 via-purple-300 to-amber-300 bg-clip-text text-transparent group-hover:scale-105 transition-transform">
-            Happy Birthday Piku
+            Happy Birthday
           </span>
         </div>
 
