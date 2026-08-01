@@ -23,9 +23,10 @@ import img9 from './assets/img9.jpeg';
 import img10 from './assets/img10.jpeg';
 import img11 from './assets/img11.jpeg';
 import img12 from './assets/img12.jpeg';
+import img13 from './assets/img13.jpeg';
 
 function App() {
-  const imagesMap = { img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12 };
+  const imagesMap = { img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13 };
 
   useEffect(() => {
     // Initial celebration burst when page loads

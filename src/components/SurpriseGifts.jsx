@@ -38,7 +38,7 @@ export function SurpriseGifts() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <span>🎁 Unbox Your Surprises</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-bold font-cursive shimmer-text px-2">
+          <h2 className="text-4xl py-2 sm:text-6xl font-bold font-cursive shimmer-text px-2">
             Secret Birthday Gift Boxes
           </h2>
           <p className="text-slate-300 text-xs sm:text-sm max-w-md mx-auto mt-2 px-4">

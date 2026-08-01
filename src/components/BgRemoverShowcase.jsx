@@ -12,7 +12,7 @@ export function PhotoShowcase({ imagesMap }) {
     { key: 'img1', name: 'Cute Selfie Together', tag: '💖 Warm Moments', desc: 'Sweet smiles and cozy memories together.' },
     { key: 'img2', name: 'Romantic Hug & Smile', tag: '🌸 Pure Affection', desc: 'Holding close and sharing genuine happiness.' },
     { key: 'img3', name: 'Outing Laughter', tag: '✨ Sunny Days', desc: 'Bright outdoor fun and playful expressions.' },
-    { key: 'img4', name: 'Yellow Saree Royalty', tag: '👑 Birthday Queen', desc: 'Stunning grace and traditional elegance.' },
+    { key: 'img13', name: 'Yellow Saree Royalty', tag: '👑 Birthday Queen', desc: 'Stunning grace and traditional elegance.' },
     { key: 'img5', name: 'Travel & Journeys', tag: '🚉 Best Partner', desc: 'Creating unforgettable memories on every trip.' },
     { key: 'img6', name: 'Cherished Smiles', tag: '🌟 Pure Joy', desc: 'Unfiltered laughter and beautiful vibes.' },
   ];

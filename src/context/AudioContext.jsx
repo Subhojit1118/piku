@@ -15,40 +15,38 @@ export function AudioProvider({ children }) {
     if (!audio) return;
 
     audio.volume = volume;
-    audio.loop = true; // Ensure endless looping back-to-back
+    audio.loop = true;
 
     const zeroClickEvents = [
-      'mousemove',
-      'pointermove',
-      'mouseover',
-      'mouseenter',
-      'scroll',
-      'wheel',
-      'focus',
-      'visibilitychange',
       'click',
       'touchstart',
       'touchend',
       'pointerdown',
       'mousedown',
-      'keydown'
+      'keydown',
+      'scroll'
     ];
 
     const tryPlayUnmuted = () => {
       if (!audioRef.current) return;
+      if (!audioRef.current.muted && !audioRef.current.paused) {
+        removeListeners();
+        return;
+      }
+
       audioRef.current.muted = false;
       audioRef.current.play().then(() => {
         setIsPlaying(true);
         setIsMuted(false);
         setAutoplayBlocked(false);
         removeListeners();
-      }).catch((err) => {
-        // If unmuted sound is restricted by browser policy, keep track playing muted in background
+      }).catch(() => {
+        setAutoplayBlocked(true);
         if (audioRef.current && audioRef.current.paused) {
           audioRef.current.muted = true;
           audioRef.current.play().then(() => {
             setIsPlaying(true);
-          }).catch(() => {});
+          }).catch(() => { });
         }
       });
     };
@@ -64,11 +62,12 @@ export function AudioProvider({ children }) {
         window.addEventListener(evt, tryPlayUnmuted, { passive: true });
       });
     };
-
-    // Immediate zero-delay play attempt on load
-    tryPlayUnmuted();
-
-    // Listen for any mouse movement, hover, scroll, focus, or gesture
+    audio.muted = true;
+    audio.play()
+      .then(() => {
+        setIsPlaying(true);
+      })
+      .catch(() => { });
     addListeners();
 
     return () => {
@@ -136,6 +135,7 @@ export function AudioProvider({ children }) {
         src={dunkiSong}
         loop
         autoPlay
+        muted
         preload="auto"
       />
       {children}
