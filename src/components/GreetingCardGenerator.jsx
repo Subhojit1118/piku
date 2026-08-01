@@ -48,29 +48,29 @@ export function GreetingCardGenerator() {
   };
 
   return (
-    <section id="card-builder" className="py-20 px-4 relative z-10">
+    <section id="card-builder" className="py-12 sm:py-20 px-3 sm:px-4 relative z-10">
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/20 border border-rose-400/30 text-rose-300 text-xs font-semibold uppercase tracking-wider mb-3">
             <span>💌 Personal Wish Card</span>
           </div>
-          <h2 className="border-2 py-2 text-5xl sm:text-6xl font-bold font-cursive shimmer-text">
+          <h2 className="py-2 text-4xl sm:text-6xl font-bold font-cursive shimmer-text px-2">
             Custom Greeting Card Builder
           </h2>
-          <p className="text-slate-300 text-sm max-w-md mx-auto mt-2">
+          <p className="text-slate-300 text-xs sm:text-sm max-w-md mx-auto mt-2 px-4">
             Create a custom birthday message card with stylish themes and instant sharing!
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 items-stretch">
           {/* Form Controls */}
-          <div className="glass-card rounded-3xl p-6 border border-pink-500/30 space-y-5">
+          <div className="glass-card rounded-3xl p-5 sm:p-6 border border-pink-500/30 space-y-4 sm:space-y-5">
             <div>
               <label className="block text-xs font-bold text-pink-300 uppercase mb-2">
                 Card Theme Style
               </label>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {[
                   { id: 'rose', name: '🌸 Rose' },
                   { id: 'galaxy', name: '🌌 Galaxy' },
@@ -127,28 +127,28 @@ export function GreetingCardGenerator() {
           </div>
 
           {/* Live Card Preview */}
-          <div className={`rounded-3xl p-8 border ${activeTheme.border} ${activeTheme.bg} shadow-2xl relative flex flex-col justify-between min-h-[340px] overflow-hidden`}>
+          <div className={`rounded-3xl p-5 sm:p-8 border ${activeTheme.border} ${activeTheme.bg} shadow-2xl relative flex flex-col justify-between min-h-[300px] sm:min-h-[340px] overflow-hidden`}>
             {/* Top Ribbon */}
-            <div className="flex justify-between items-center mb-6">
-              <span className="text-2xl">👑</span>
-              <span className={`text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-black/40 border border-white/10 ${activeTheme.text}`}>
+            <div className="flex justify-between items-center mb-4 sm:mb-6">
+              <span className="text-xl sm:text-2xl">👑</span>
+              <span className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/40 border border-white/10 ${activeTheme.text}`}>
                 HAPPY BIRTHDAY
               </span>
-              <span className="text-2xl">✨</span>
+              <span className="text-xl sm:text-2xl">✨</span>
             </div>
 
             {/* Content */}
-            <div className="my-auto text-center">
-              <h3 className={`text-5xl font-bold font-cursive ${activeTheme.text} mb-4`}>
+            <div className="my-auto text-center py-4">
+              <h3 className={`text-3xl sm:text-5xl font-bold font-cursive ${activeTheme.text} mb-3 sm:mb-4`}>
                 Dearest {name || 'Piku'},
               </h3>
-              <p className="text-slate-200 font-handwriting text-2xl leading-relaxed max-w-md mx-auto">
+              <p className="text-slate-200 font-handwriting text-lg sm:text-2xl leading-relaxed max-w-md mx-auto px-2">
                 "{customWish}"
               </p>
             </div>
 
             {/* Footer */}
-            <div className="mt-8 pt-4 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+            <div className="mt-6 sm:mt-8 pt-3 sm:pt-4 border-t border-white/10 flex justify-between items-center text-[11px] sm:text-xs text-slate-400">
               <span>💖 Made with Love</span>
               <span>🎉 Happy Birthday!</span>
             </div>

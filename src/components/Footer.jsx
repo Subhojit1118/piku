@@ -13,7 +13,7 @@ export function Footer() {
     <footer className="py-12 px-4 border-t border-pink-500/20 glass-panel relative z-10 text-center">
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-4">
         <div className="text-4xl animate-bounce">👑</div>
-        <h3 className="text-4xl font-bold font-cursive shimmer-text">
+        <h3 className="text-3xl sm:text-4xl font-bold font-cursive shimmer-text px-2">
           Happy Birthday Piku! 💖✨
         </h3>
         <p className="text-xs text-slate-400 max-w-sm">
