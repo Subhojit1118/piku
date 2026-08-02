@@ -159,49 +159,49 @@ function explodeFirework(x, y, themeColor) {
   // Play explosion sound effect
   playPatakaSFX();
 
-  // Spawn main explosion sparks
-  const sparkCount = 65;
+  // Spawn main explosion micro sparks
+  const sparkCount = 75;
   for (let i = 0; i < sparkCount; i++) {
     const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 14 + 3;
+    const speed = Math.random() * 12 + 2;
 
     activeParticles.push({
       x,
       y,
       vx: Math.cos(angle) * speed,
       vy: Math.sin(angle) * speed,
-      size: Math.random() * 9 + 4,
+      size: Math.random() * 3 + 2, // Tiny micro-spark size (2px - 5px)
       color: colors[Math.floor(Math.random() * colors.length)],
       shape: shapes[Math.floor(Math.random() * shapes.length)],
       rotation: Math.random() * 360,
       vRot: (Math.random() - 0.5) * 16,
       opacity: 1,
-      gravity: 0.28,
+      gravity: 0.22,
       drag: 0.95,
-      fadeSpeed: Math.random() * 0.015 + 0.01,
+      fadeSpeed: Math.random() * 0.015 + 0.012,
       isEmoji: false,
     });
   }
 
-  // Spawn celebratory emojis floating & spinning outwards
+  // Spawn mini celebratory emojis floating & spinning outwards
   const emojiCount = 8;
   for (let i = 0; i < emojiCount; i++) {
     const angle = (i / emojiCount) * Math.PI * 2 + Math.random() * 0.4;
-    const speed = Math.random() * 8 + 4;
+    const speed = Math.random() * 6 + 3;
     const emoji = celebrationEmojis[Math.floor(Math.random() * celebrationEmojis.length)];
 
     activeParticles.push({
       x,
       y,
       vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed - 2,
-      size: Math.random() * 12 + 22,
+      vy: Math.sin(angle) * speed - 1.5,
+      size: Math.random() * 5 + 11, // Small mini-emoji size (11px - 16px)
       rotation: Math.random() * 360,
       vRot: (Math.random() - 0.5) * 8,
       opacity: 1,
-      gravity: 0.18,
+      gravity: 0.15,
       drag: 0.96,
-      fadeSpeed: 0.008,
+      fadeSpeed: 0.01,
       isEmoji: true,
       emoji,
     });
@@ -219,17 +219,17 @@ export function triggerConfettiBurst(particleCount = 100) {
     activeParticles.push({
       x: width / 2 + (Math.random() * 200 - 100),
       y: height * 0.5,
-      vx: (Math.random() - 0.5) * 18,
-      vy: (Math.random() - 0.8) * 22,
-      size: Math.random() * 8 + 6,
+      vx: (Math.random() - 0.5) * 16,
+      vy: (Math.random() - 0.8) * 20,
+      size: Math.random() * 3 + 3, // Micro confetti particle size (3px - 6px)
       color: colors[Math.floor(Math.random() * colors.length)],
       shape: shapes[Math.floor(Math.random() * shapes.length)],
       rotation: Math.random() * 360,
       vRot: (Math.random() - 0.5) * 12,
       opacity: 1,
-      gravity: 0.35,
+      gravity: 0.3,
       drag: 0.96,
-      fadeSpeed: 0.012,
+      fadeSpeed: 0.014,
       isEmoji: false,
     });
   }

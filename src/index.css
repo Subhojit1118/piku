@@ -27,8 +27,26 @@
     -moz-user-drag: none;
     -o-user-drag: none;
     -webkit-touch-callout: none;
+    pointer-events: none;
   }
 }
+
+/* Anti-Screenshot & Anti-Print Shield */
+@media print {
+  html, body {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+/* Blur protection for screenshot tool focus loss */
+.screenshot-blur-protection {
+  filter: blur(40px) brightness(0.2) !important;
+  transition: filter 0.15s ease-in-out;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
 
 /* Glassmorphism */
 .glass-panel {
