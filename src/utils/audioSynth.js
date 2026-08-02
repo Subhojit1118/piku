@@ -160,3 +160,63 @@ export function playChimeSFX() {
     });
   } catch (_) {}
 }
+
+/**
+ * Synthesizes a realistic Pataka (Firecracker) / Rocket burst sound effect.
+ */
+export function playPatakaSFX() {
+  try {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+
+    // 1. Whistle sound (Rocket launch)
+    const whistleOsc = ctx.createOscillator();
+    const whistleGain = ctx.createGain();
+    whistleOsc.type = 'sawtooth';
+    whistleOsc.frequency.setValueAtTime(300, now);
+    whistleOsc.frequency.exponentialRampToValueAtTime(1400, now + 0.18);
+    whistleGain.gain.setValueAtTime(0.1, now);
+    whistleGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+    whistleOsc.connect(whistleGain);
+    whistleGain.connect(ctx.destination);
+    whistleOsc.start(now);
+    whistleOsc.stop(now + 0.18);
+
+    // 2. Main Explosion Boom
+    const boomTime = now + 0.15;
+    const boomOsc = ctx.createOscillator();
+    const boomGain = ctx.createGain();
+    boomOsc.type = 'sine';
+    boomOsc.frequency.setValueAtTime(160, boomTime);
+    boomOsc.frequency.exponentialRampToValueAtTime(35, boomTime + 0.35);
+
+    boomGain.gain.setValueAtTime(0.4, boomTime);
+    boomGain.gain.exponentialRampToValueAtTime(0.001, boomTime + 0.35);
+
+    boomOsc.connect(boomGain);
+    boomGain.connect(ctx.destination);
+    boomOsc.start(boomTime);
+    boomOsc.stop(boomTime + 0.35);
+
+    // 3. Crackling Pataka pops (Multiple rapid noise pops)
+    const popCount = 6;
+    for (let i = 0; i < popCount; i++) {
+      const popTime = boomTime + 0.05 + Math.random() * 0.25;
+      const popOsc = ctx.createOscillator();
+      const popGain = ctx.createGain();
+      popOsc.type = 'square';
+      popOsc.frequency.setValueAtTime(600 + Math.random() * 800, popTime);
+      popOsc.frequency.exponentialRampToValueAtTime(100, popTime + 0.04);
+
+      popGain.gain.setValueAtTime(0.15, popTime);
+      popGain.gain.exponentialRampToValueAtTime(0.001, popTime + 0.04);
+
+      popOsc.connect(popGain);
+      popGain.connect(ctx.destination);
+      popOsc.start(popTime);
+      popOsc.stop(popTime + 0.04);
+    }
+  } catch (_) {}
+}
+
